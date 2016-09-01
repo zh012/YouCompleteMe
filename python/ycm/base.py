@@ -166,7 +166,10 @@ def OverlapLength( left_string, right_string ):
   length = 1
   while True:
     pattern = left_string[ -length: ]
-    found = right_string.find( pattern )
+    try:
+      found = right_string.find( pattern )
+    except UnicodeDecodeError:
+      found = -1
     if found < 0:
       return best
     length += found

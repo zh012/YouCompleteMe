@@ -157,8 +157,11 @@ def OverlapLength( left_string, right_string ):
   elif left_string_length < right_string_length:
     right_string = right_string[ :left_string_length ]
 
-  if left_string == right_string:
-    return min( left_string_length, right_string_length )
+  import warnings
+  with warnings.catch_warnings():
+      warnings.simplefilter('ignore')
+      if left_string == right_string:
+        return min( left_string_length, right_string_length )
 
   # Start by looking for a single character match
   # and increase length until no match is found.
